@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 export class GeneradorTitulosService {
 
   titulos: String[]; // Array de títulos
-  version = 'V_0.2'; // Versión del servicio
+  version = 'V_0.3'; // Versión del servicio
 
 
   getVersion() {
