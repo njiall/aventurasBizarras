@@ -1,0 +1,37 @@
+<div class="container-fluid">
+    <div class="jumbotron jumbotron-fluid contenedor">
+        <div class="container colorPapel">
+            <h1 class="display-4">Aplicaciones Bizarras</h1>
+            <p class="lead">Aplicaciones para tus <strong>Aventuras Bizarras</strong></p>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card contenedor">
+                    <div class="card-body">
+                        <h5 class="card-title">Aventuras Bizarras</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Nuestra web madre</h6>
+                        <p class="card-text"> ¿Alguna vez has deseado explorar la jungla amazónica? ¿Los canales de Marte? ¿Una lucha a brazo partido contra simios psicópatas? ¿Balancearte en una lámpara de araña con tu fiel acero en la mano? ¡Bienvenido pues y que empiece
+                            la aventura!
+                        </p>
+                        <a href="http://www.aventurasbizarras.com" target="_blank" class="card-link">Visita Aventuras Bizarras</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card contenedor">
+                    <div class="card-body">
+                        <h5 class="card-title">Aplicaciones</h5>
+                        <ul>
+                            <li *ngFor="let aplicacion of listaAplicaciones; let i = index">
+                                <a routerLink="{{ aplicacion.enlace }}">{{ aplicacion.nombre }}</a>
+                                <p class="card-text">{{ aplicacion.descripcion }}</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

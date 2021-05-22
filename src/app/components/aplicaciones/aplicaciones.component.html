@@ -1,0 +1,18 @@
+<div class="container-fluid contenedor">
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4">Aplicaciones</h1>
+            <p class="lead">Aplicaciones bizarras</p>
+        </div>
+    </div>
+    <div class="card-columns">
+        <div class="card" *ngFor="let aplicacion of listaAplicaciones; let i = index">
+            <img src=" {{ aplicacion.img }} " class="card-img-top" alt="{{ aplicacion.img_alt }}">
+            <div class="card-body">
+                <h5 class="card-title">{{ aplicacion.nombre }}</h5>
+                <p class="card-text">{{ aplicacion.descripcion }}</p>
+                <button (click)="irA(aplicacion.enlace)" type="button" class="btn btn-primary btn-block">{{ aplicacion.botonTexto }}</button>
+            </div>
+        </div>
+    </div>
+</div>

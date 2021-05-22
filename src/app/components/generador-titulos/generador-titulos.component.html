@@ -1,0 +1,39 @@
+<div class="container-fluid contenedor">
+    <form>
+        <div class="row">
+            <!--Inicio de la fila -->
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="../../../assets//images/libros.jpg" class="card-img-top" alt="Generador de títulos">
+                    <div class="card-body">
+                        <h5 class="card-title">Generador aleatorio de títulos con sabor pulp</h5>
+                        <p class="card-text">Para generar los títulos sólo tendrás que seleccionar cuántos deseas generar y pulsar <strong>¡Generar títulos!</strong> ¡Es fácil!</p>
+                        <p class="card-text"><small class="text-muted"><strong>Versión de la interfaz: </strong>{{ version }}</small></p>
+                        <p class="card-text"><small class="text-muted"><strong>Versión del generador: </strong>{{ versionServicio }}</small></p>
+                        <!-- <a [routerLink]="['/aplicaciones']" class="btn btn-primary btn-block">Volver a <strong>aplicaciones</strong></a> -->
+                        <a [routerLink]="['/inicio']" class="btn btn-primary btn-block">Volver a <strong>inicio</strong></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Parámetros</h5>
+                        <label for="inputNumero">Número de títulos a generar</label>
+                        <input id="inputNumero" type="text" value="10" #numero>
+                        <hr>
+                        <input class="btn-outline-dark center-block" type="button" name="generate" value="¡Generar títulos!" (click)='generarTitulos(numero.value)'>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="card" *ngFor="let titulo of titulos">
+                    <div class="card-body">
+                        <h5 class="card-title titulogenerado listaSinDecoracion">{{ titulo }}</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Final de la fila-->
+    </form>
+</div>

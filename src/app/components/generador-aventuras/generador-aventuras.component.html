@@ -1,0 +1,127 @@
+<div class="container-fluid contenedor">
+    <form>
+        <div class="row">
+            <!--Inicio de la fila -->
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Generador aleatorio de aventuras</h5>
+                        <p class="card-text">Para generar una <strong>semilla</strong> de aventura sólo tendrás que pulsar <strong>¡Dame aventura!</strong> ¡Es fácil!</p>
+                        <input class="btn-outline-dark center-block" type="button" name="generate" value="¡Dame aventura!" (click)='generarAventura()'>
+                        <p class="card-text"><small class="text-muted"><strong>Versión de la interfaz: </strong>{{ version }}</small></p>
+                        <p class="card-text"><small class="text-muted"><strong>Versión del generador: </strong>{{ versionServicio }}</small></p>
+                        <!-- <a [routerLink]="['/aplicaciones']" class="btn btn-primary btn-block">Volver a <strong>aplicaciones</strong></a> -->
+                        <a [routerLink]="['/inicio']" class="btn btn-primary btn-block">Volver a <strong>inicio</strong></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="card animated fadeIn fast">
+                    <div class="card-body">
+                        <h3 class="card-title titulogenerado">{{ titulo }}</h3>
+                        <p class="card-text"><small class="text-muted">Originalmente publicada en <strong>{{ aventura.publicadaEn }} #{{ aventura.numeroPublicacion }}</strong></small></p>
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title titulogenerado">Sinopsis</h4>
+                                <p class="card-text titulogenerado"> {{ aventura.intro.villano }} planea {{ aventura.intro.plan1 }} {{ aventura.intro.plan2 }} en {{ aventura.intro.localizacion }}</p>
+                            </div>
+
+                            <div class="card-body">
+                                <h4 class="card-title titulogenerado">Primer acto</h4>
+                                <p class="card-text titulogenerado">
+                                    <Strong>Gancho:</Strong> {{ aventura.actoPrimero.gancho }}</p>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <h5 class="card-title titulogenerado">PNJs relevantes</h5>
+                                        <ul>
+                                            <li class="titulogenerado" *ngFor="let personaje of aventura.actoPrimero.personajes">{{ personaje.tipo }} {{ personaje.descriptor2 }} y {{ personaje.descriptor1 }}</li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h5 class="card-title titulogenerado">Escena de acción</h5>
+                                        <p class="card-text titulogenerado"> Se produce {{ aventura.actoPrimero.accion.tipo }} en {{ aventura.actoPrimero.accion.lugar }} que involucra a {{ aventura.actoPrimero.accion.participantes }} y que se complica porque {{ aventura.actoPrimero.accion.complicaciones
+                                            }}
+                                        </p>
+                                    </div>
+                                </div>
+                                <p class="card-text titulogenerado">
+                                    <Strong>Giro argumental</Strong> {{ aventura.actoPrimero.giroGuion }} </p>
+                            </div>
+                            <div class="card-body">
+                                <h4 class="card-title titulogenerado">Segundo acto</h4>
+                                <p class="card-text titulogenerado">
+                                    <Strong>Gancho:</Strong> {{ aventura.actoSegundo.gancho }}</p>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <h5 class="card-title titulogenerado">PNJs relevantes</h5>
+                                        <ul>
+                                            <li class="titulogenerado" *ngFor="let personaje of aventura.actoSegundo.personajes">{{ personaje.tipo }} {{ personaje.descriptor2 }} y {{ personaje.descriptor1 }}</li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h5 class="card-title titulogenerado">Escena de acción</h5>
+                                        <p class="card-text titulogenerado"> Se produce {{ aventura.actoSegundo.accion.tipo }} en {{ aventura.actoSegundo.accion.lugar }} que involucra a {{ aventura.actoSegundo.accion.participantes }} y que se complica porque {{ aventura.actoSegundo.accion.complicaciones
+                                            }}
+                                        </p>
+                                    </div>
+                                </div>
+                                <p class="card-text titulogenerado">
+                                    <Strong>Giro argumental</Strong> {{ aventura.actoSegundo.giroGuion }} </p>
+                            </div>
+                            <div class="card-body">
+                                <h4 class="card-title titulogenerado">Tercer acto</h4>
+                                <p class="card-text titulogenerado">
+                                    <Strong>Gancho:</Strong> {{ aventura.actoTercero.gancho }}</p>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <h5 class="card-title titulogenerado">PNJs relevantes</h5>
+                                        <ul>
+                                            <li class="titulogenerado" *ngFor="let personaje of aventura.actoTercero.personajes">{{ personaje.tipo }} {{ personaje.descriptor2 }} y {{ personaje.descriptor1 }}</li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h5 class="card-title titulogenerado">Escena de acción</h5>
+                                        <p class="card-text titulogenerado"> Se produce {{ aventura.actoTercero.accion.tipo }} en {{ aventura.actoTercero.accion.lugar }} que involucra a {{ aventura.actoTercero.accion.participantes }} y que se complica porque {{ aventura.actoTercero.accion.complicaciones
+                                            }}
+                                        </p>
+                                    </div>
+                                </div>
+                                <p class="card-text titulogenerado">
+                                    <Strong>Giro argumental</Strong> {{ aventura.actoTercero.giroGuion }} </p>
+                            </div>
+                            <div class="card-body">
+                                <h4 class="card-title titulogenerado">Desenlace</h4>
+                                <p class="card-text titulogenerado">
+                                    <Strong>Gancho:</Strong> {{ aventura.actoCuarto.gancho }}</p>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <h5 class="card-title titulogenerado">PNJs relevantes</h5>
+                                        <ul>
+                                            <li class="titulogenerado" *ngFor="let personaje of aventura.actoCuarto.personajes">{{ personaje.tipo }} {{ personaje.descriptor2 }} y {{ personaje.descriptor1 }}</li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h5 class="card-title titulogenerado">Escena de acción</h5>
+                                        <p class="card-text titulogenerado"> Se produce {{ aventura.actoCuarto.accion.tipo }} en {{ aventura.actoCuarto.accion.lugar }} que involucra a {{ aventura.actoCuarto.accion.participantes }} y que se complica porque {{ aventura.actoCuarto.accion.complicaciones
+                                            }}
+                                        </p>
+                                    </div>
+                                </div>
+                                <p class="card-text titulogenerado">
+                                    <Strong>Giro argumental</Strong> {{ aventura.actoCuarto.giroGuion }} </p>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Final de la fila-->
+    </form>
+</div>

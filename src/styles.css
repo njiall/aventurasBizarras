@@ -1,0 +1,94 @@
+/* You can add global styles to this file, and also import other style files */
+
+
+/* html {
+    background-color: antiquewhite;
+}
+
+body {
+    background-color: inherit;
+    background-image: url('assets/fondo2.jpg');
+    /* background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    height: 100%; 
+}*/
+
+.banderola {
+    background-color: black;
+    width: 75px;
+    height: 150px;
+    margin-right: -10px;
+    z-index: 3;
+}
+
+
+/*
+footer {
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+}
+
+
+
+.colorPrincipal {
+    background-color: red;
+    color: white;
+}
+
+.listaSinDecoracion {
+    list-style-type: none;
+}
+
+ */
+
+body {
+    background-color: black;
+    background-image: url('assets/fondo2.jpg');
+}
+
+.titulogenerado::first-letter {
+    text-transform: uppercase;
+}
+
+.contenedor {
+    background-color: whitesmoke;
+    padding: 10px;
+    margin: 10px;
+}
+
+footer {
+    color: white;
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+}
+
+.colorPapel {
+    background-color: antiquewhite;
+    color: black;
+}
+
+.jumbotron {
+    background: none;
+}
+
+.titulo {
+    margin: 10px;
+    color: antiquewhite;
+    font-weight: bolder
+}
+
+.contenedorDetalle {
+    margin: 10px;
+}
+
+.resaltado {
+    font-weight: bold;
+}
+
+.contenedorPrincipal {
+    margin-bottom: 100px;
+}

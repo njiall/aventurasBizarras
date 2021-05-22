@@ -1,0 +1,53 @@
+<div class="container-fluid contenedor">
+    <form>
+        <div class="row">
+            <!--Inicio de la fila -->
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="../../../assets//images/numeros.jpg" class="card-img-top" alt="Lanzador de dados">
+                    <div class="card-body">
+                        <h5 class="card-title">Lanzador de dados de <strong>Aventuras Bizarras JdR</strong></h5>
+                        <p class="card-text">Para lanzar los dados sólo tendrás qué tipo de tirada es y pulsar <strong>¡Lanzar dados!</strong> ¡Es fácil!</p>
+                        <p class="card-text"><small class="text-muted"><strong>Versión de la interfaz: </strong>{{ version }}</small></p>
+                        <p class="card-text"><small class="text-muted"><strong>Versión del generador: </strong>{{ versionServicio }}</small></p>
+                        <a [routerLink]="['/aplicaciones']" class="btn btn-primary btn-block">Volver a <strong>aplicaciones</strong></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Parámetros</h5>
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="inputGroupSelect01">Tipo de tirada</label>
+                            </div>
+                            <select class="custom-select" id="inputGroupSelect01" #tipoTirada>
+                              <option value=0>Desventaja</option>
+                              <option selected value=1>Normal</option>
+                              <option value=2>Ventaja</option>
+                            </select>
+                        </div>
+                        <label for="inputDificultad">Nivel de dificultad</label>
+                        <input type="text" id="inputDificultad" value="11" #dificultad>
+                        <label for="inputHabilidad">Nivel de habilidad</label>
+                        <input type="text" id="inputHabilidad" value="0" #habilidad>
+                        <hr>
+                        <input class="btn-outline-dark center-block" type="button" name="generate" value="¡Lanzar dados!" (click)='lanzarDados(tipoTirada.value, dificultad.value, habilidad.value)'>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">El resultado de los dados es <strong>{{ resultado }}</strong> </h5>
+                        <p class="card-text"> {{ resultadosTexto }}</p>
+                        <p class="card-text"> </p>
+                        <h4 class="card-text"> {{ resultadoExito }}</h4>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!--Final de la fila-->
+    </form>
+</div>
