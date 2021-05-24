@@ -180,7 +180,7 @@ export class GeneradorAventurasService {
 
   generarPlanAQuien(tirada: number) {
     let quien: string;
-    if (tirada < 5 ) { quien = ' a un monstruo'; }  else
+    if (tirada < 5 ) { quien = 'a un monstruo'; }  else
       if ( tirada < 10 ) { quien = 'un edificio'; } else
       if ( tirada < 14 ) { quien = 'a una gente'; } else
       if ( tirada < 18 ) { quien = 'a un país'; } else
@@ -219,7 +219,7 @@ export class GeneradorAventurasService {
     if ( tirada < 57 ) { gancho = 'Un extraño e inexplicable hecho'; }  else
     if ( tirada < 66 ) { gancho = 'Los héroes leen una noticia o la escuchan en la radio'; }  else
     if ( tirada < 78 ) { gancho = 'Un viejo amigo pide ayuda'; }  else
-    if ( tirada < 91 ) { gancho = 'In media res: Los héroes comienzan involucrados desde el principio: están siendo atacados o incriminados en un crimen que no han cometido, o son víctimas de un robo…'; }  else
+    if ( tirada < 91 ) { gancho = '"In media res": Los héroes comienzan involucrados desde el principio: están siendo atacados o incriminados en un crimen que no han cometido, o son víctimas de un robo…'; }  else
     if ( tirada < 101 ) { gancho =  `${ this.generarGancho(this.d100())} y ${ this.generarGancho(this.d100())}`; }
     return gancho;
   }

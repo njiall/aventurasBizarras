@@ -105,7 +105,7 @@ export class GeneradorTitulosService {
       `${ Math.floor(Math.random() * 100) + 1 } cosas que siempre quisiste saber sobre ${this.getArticulo(concordancia)}`,
       `Un cubo lleno de ${this.getArticulo(concordancia)}`,
       `La tienda de mascotas de ${this.getArticulo(concordancia)}`,
-      `El bueno, el malo y ${this.getArticulo(concordancia)}`,
+      `El bueno, el feo y ${this.getArticulo(concordancia)}`,
     ];
 
     const INICIO = [
@@ -220,7 +220,7 @@ export class GeneradorTitulosService {
       ['pigmeo', 'pigmeos', 'pigmea', 'pigmeas' ],
       ['rabioso', 'rabiosos', 'rabiosa', 'rabiosas' ],
       ['dientes de sable', 'dientes de sable', 'dientes de sable', 'dientes de sable' ],
-      ['-hombre', '-hombre', '-mujer', '-mujer' ],
+      ['- hombre', '- hombre', '- mujer', '- mujer' ],
     ];
 
     const PLANTILLA = [
@@ -297,10 +297,10 @@ export class GeneradorTitulosService {
     ];
 
     const PLACE1 = [
-      ` ${ PLACESIN[Math.floor(Math.random() * PLACESIN.length)][concordancia]} `,
-      ` ${ PLACESON[Math.floor(Math.random() * PLACESON.length)][concordancia]} `,
-      ` ${ PLACESTHROUGH[Math.floor(Math.random() * PLACESTHROUGH.length)][concordancia]} `,
-      ` ${ PLACESACROSS[Math.floor(Math.random() * PLACESACROSS.length)][concordancia]} `,
+      ` en ${ PLACESIN[Math.floor(Math.random() * PLACESIN.length)][concordancia]} `,
+      ` en ${ PLACESON[Math.floor(Math.random() * PLACESON.length)][concordancia]} `,
+      ` a través de ${ PLACESTHROUGH[Math.floor(Math.random() * PLACESTHROUGH.length)][concordancia]} `,
+      ` a través de ${ PLACESACROSS[Math.floor(Math.random() * PLACESACROSS.length)][concordancia]} `,
     ];
 
     const PLANTILLA = [
@@ -317,10 +317,10 @@ export class GeneradorTitulosService {
     const SUJETO = [
       ['guerrero', 'guerreros', 'guerrera', 'guerreras'],
       ['enano', 'enanos', 'enana', 'enanas'],
-      ['monstruo', 'monstruos', 'monstrua', 'monstruas'],
+      ['monstruo', 'monstruos', 'bestia', 'bestias'],
       ['árbol', 'árboles', 'árboleda', 'árboledas'],
       ['dios', 'dioses', 'diosa', 'diosas'],
-      ['diablo', 'diablesa', 'diablos', 'diablesas'],
+      ['diablo', 'diablos', 'diablesa', 'diablesas'],
       ['oscuro', 'oscuros', 'sombra', 'sombras'],
       ['fantasma', 'fantasmas', 'fantasma', 'fantasmas'],
       ['pirata', 'piratas', 'pirata', 'piratas'],
