@@ -201,7 +201,7 @@ export class GeneradorTitulosService {
       ['halcón', 'halcones', 'halcona', 'halconas'],
       ['kraken', 'krakenes', 'kraken', 'krakenes'],
       ['mamut', 'mamuts', 'mamut', 'mamuts'],
-      ['polilla', 'polillas', 'polilla', 'polillas'],
+      ['polilla', 'polillas', 'mosquito', 'mosquitos'],
       ['búho', 'buhos', 'lechuza', 'lechuzas'],
       ['lagarto', 'lagartos', 'serpiente', 'serpientes'],
       ['gorrión', 'gorriones', 'paloma', 'palomas'],
