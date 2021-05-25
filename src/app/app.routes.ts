@@ -6,6 +6,7 @@ import { AplicacionesComponent } from './components/aplicaciones/aplicaciones.co
 import { GeneradorTitulosComponent } from './components/generador-titulos/generador-titulos.component';
 import { LanzaDadosComponent } from './components/lanza-dados/lanza-dados.component';
 import { GeneradorAventurasComponent } from './components/generador-aventuras/generador-aventuras.component';
+import { ContactoComponent } from './contacto/contacto.component';
 
 const APP_ROUTES: Routes = [
     { path: 'inicio', component: InicioComponent},
@@ -13,6 +14,7 @@ const APP_ROUTES: Routes = [
     { path: 'generadorTitulos', component: GeneradorTitulosComponent},
     { path: 'lanzaDados', component: LanzaDadosComponent},
     { path: 'generaAventuras', component: GeneradorAventurasComponent},
+    { path: 'contacto', component: ContactoComponent},
     { path: '**', pathMatch: 'full', redirectTo: 'inicio' }
 ];
 
