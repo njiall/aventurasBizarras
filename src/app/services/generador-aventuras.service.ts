@@ -7,7 +7,7 @@ export class GeneradorAventurasService {
 
   aventura: any;
 
-  version = 'V_0.1'; // Versión del servicio
+  version = 'V_0.2'; // Versión del servicio
 
   getVersion() {
     return this.version;
@@ -20,10 +20,10 @@ export class GeneradorAventurasService {
 
     this.aventura =  {
         intro: this.generarSinopsis(gen.id),
-        // actoPrimero: this.generarActo(),
-        // actoSegundo: this.generarActo(),
-        // actoTercero: this.generarActo(),
-        // actoCuarto: this.generarActo(),
+        actoPrimero: this.generarActo(),
+        actoSegundo: this.generarActo(),
+        actoTercero: this.generarActo(),
+        actoCuarto: this.generarActo(),
         publicadaEn: this.generaPublicacionRevista(),
         numeroPublicacion: this.generaPublicacionNumero(),
         genero : gen
@@ -75,19 +75,16 @@ export class GeneradorAventurasService {
     return intro;
   }
 
-  // generarActo() {
-  //   let intro: Acto;
+  generarActo() {
+     let intro: Acto;
 
-  //   intro = {
-  //     gancho: this.generarGancho(this.d100()),
-  //     personajes: this.generarPNJ(),
-  //     accion: this.generarSecuenciaAccion(),
-  //     giroGuion: this.generarGiroArgumental(this.d100())};
-
-
-  //   console.log(intro);
-  //   return intro;
-  // }
+     intro = {
+       gancho: this.generarGancho(),
+       personajes: this.generarPNJ(),
+       accion: this.generarSecuenciaAccion(),
+       giroGuion: this.generarGiroArgumental()};
+     return intro;
+   }
 
   /**
    * Generadores auxiliares.
@@ -174,45 +171,7 @@ export class GeneradorAventurasService {
 
    generarSecuaces(villano: number) {
 
-    let VILLANO = [];
-
-    //  const VILLANOPULP = [
-    //    ['un gangster' , 'una femme fatale'],
-    //    ['un ocultista' , 'una ocultista'],
-    //    ['un terror sobrenatural' , 'una amenaza sobrenatural'],
-    //    ['un lider cultista' , 'una lider cultista'],
-    //    ['el dirigente de una civilización perdida', 'la reina de una civilización perdida'],
-    //    ['un científico loco' , 'una femme fatale'],
-    //    ['un extranjero' , 'una extranjera'],
-    //    ['un ladrón' , 'una ladrona'],
-    //    ['una asesina' , 'un asesino'],
-    //    ['un poli corrupto' , 'una poli corrupta'],
-    //    ['un dictador' , 'una dictadora'],
-    //    ['un nazi' , 'una nazi'],
-    //    ['un magnate de los negocios' , 'una magnate de los negocios'],
-    //    ['un señor del crimen' , 'una señora del crimen'],
-    //    ['un pirata' , 'una pirata'],
-    //    ['un anarquista' , 'una anarquista'],
-    //    ['un personaje de la jet set' , 'un personaje de la jet set'],
-    //    ['un político corrupto' , 'una política corrupta'],
-    //    ['un invasor alienígena' , 'una invasora alienígena'],
-    //    ['una mente criminal' , 'una mente criminal'],
-    //    ['la némesis de nuestros héroes' , 'la némesis de nuestros héroes'],
-    //  ];
-
-    //  if (genero === '1') {
-    //     VILLANO = VILLANOPULP;
-    //  }
-
-    // const PLANTILLA = [
-    //   ` ${ VILLANO[Math.floor(Math.random() * VILLANO.length)][concordancia]} `,
-    //   ` ${ VILLANO[Math.floor(Math.random() * VILLANO.length)][concordancia]} `,
-    //   ` ${ VILLANO[Math.floor(Math.random() * VILLANO.length)][concordancia]} `,
-    //   ` ${ VILLANO[Math.floor(Math.random() * VILLANO.length)][concordancia]} `,
-    // ` ${ VILLANO[Math.floor(Math.random() * VILLANO.length)][concordancia]} ${ this.getModificador(concordancia) }`,
-    // ];
-
-    // return  PLANTILLA[Math.floor(Math.random() * PLANTILLA.length)];
+    // TODO Implementar
 
   }
 
@@ -352,7 +311,6 @@ export class GeneradorAventurasService {
       'crear',
       'destruir',
       'bombardear',
-      'tomar',
       'destruir',
     ];
 
@@ -421,174 +379,285 @@ export class GeneradorAventurasService {
  }
 
 
-  // generarGancho(tirada: number) {
-  //   let gancho: string;
-  //   if ( tirada < 12 ) { gancho = 'Un desconocido pide ayuda '; } else
-  //   if ( tirada < 21 ) { gancho = 'Los héroes encuentran un cadáver'; }  else
-  //   if ( tirada < 31 ) { gancho = 'Ocurre un horrible desastre'; }  else
-  //   if ( tirada < 43 ) { gancho = 'Alguien sufre un ataque'; }  else
-  //   if ( tirada < 57 ) { gancho = 'Un extraño e inexplicable hecho'; }  else
-  //   if ( tirada < 66 ) { gancho = 'Los héroes leen una noticia o la escuchan en la radio'; }  else
-  //   if ( tirada < 78 ) { gancho = 'Un viejo amigo pide ayuda'; }  else
-  //   if ( tirada < 91 ) { gancho = '"In media res": Los héroes comienzan involucrados desde el principio: están siendo atacados o incriminados en un crimen que no han cometido, o son víctimas de un robo…'; }  else
-  //   if ( tirada < 101 ) { gancho =  `${ this.generarGancho(this.d100())} y ${ this.generarGancho(this.d100())}`; }
-  //   return gancho;
-  // }
+  generarGancho() {
 
-  // generarPNJ() {
-  //   const LISTA = [];
+    const GANCHO = [
+      'Un desconocido pide ayuda',
+      'Los héroes encuentran un cadáver',
+      'Ocurre un horrible desastre',
+      'Alguien sufre un ataque',
+      'Un extraño e inexplicable hecho',
+      'Los héroes leen una noticia o la escuchan en la radio',
+      'Un viejo amigo pide ayuda',
+      '"In media res": Los héroes comienzan involucrados desde el principio: están siendo atacados o incriminados en un crimen que no han cometido, o son víctimas de un robo…',
+     ];
 
-  //   for (let i = 1; i < this.d4(2); i++) {
-  //     const PERS = {descriptor1: this.generarRasgoPNJ(this.d100(), 0),  descriptor2: this.generarRasgoPNJ(this.d100(), 1), tipo: this.generarTipoPNJ(this.d100())};
-  //     LISTA.push(PERS);
-  //   }
-  //   return LISTA;
-  // }
+    const PLANTILLA = [
+      `${ GANCHO[Math.floor(Math.random() * GANCHO.length)]}`,
+    ];
 
-  // generarRasgoPNJ(tirada: number, posicion: number) {
-  //   let rasgo: string[];
-  //   if ( tirada < 5 ) { rasgo = [ 'grande', 'pulcro']; } else
-  //   if ( tirada < 10 ) { rasgo = [ 'feo', 'desafortunado']; } else
-  //   if ( tirada < 14 ) { rasgo = [ 'sospechoso', 'amenazante']; } else
-  //   if ( tirada < 18 ) { rasgo = [ 'reservado', 'débil']; } else
-  //   if ( tirada < 22 ) { rasgo = [ 'fuerte', 'extranjero']; } else
-  //   if ( tirada < 26 ) { rasgo = [ 'pequeño', 'rico']; } else
-  //   if ( tirada < 30 ) { rasgo = [ 'digno de confianza', 'de poca monta']; } else
-  //   if ( tirada < 34 ) { rasgo = [ 'desamparado', 'ambicioso']; } else
-  //   if ( tirada < 38 ) { rasgo = [ 'peculiar', 'habilidoso']; } else
-  //   if ( tirada < 42 ) { rasgo = [ 'problemático', 'útil']; } else
-  //   if ( tirada < 46 ) { rasgo = [ 'inteligente', 'valiente']; } else
-  //   if ( tirada < 50 ) { rasgo = [ 'encantador', 'salvaje']; } else
-  //   if ( tirada < 54 ) { rasgo = [ 'de voluntad fuerte', 'típicamente americano']; } else
-  //   if ( tirada < 58 ) { rasgo = [ 'famoso', 'duro']; } else
-  //   if ( tirada < 62 ) { rasgo = [ 'estrafalario', 'distintivo']; } else
-  //   if ( tirada < 66 ) { rasgo = [ 'estúpido', 'profesional']; } else
-  //   if ( tirada < 70 ) { rasgo = [ 'frío', 'joven']; } else
-  //   if ( tirada < 74 ) { rasgo = [ 'impulsivo', 'violento']; } else
-  //   if ( tirada < 78 ) { rasgo = [ 'torpe', 'urbano']; } else
-  //   if ( tirada < 82 ) { rasgo = [ 'afortunado', 'amateur']; } else
-  //   if ( tirada < 86 ) { rasgo = [ 'peligroso', 'viejo']; } else
-  //   if ( tirada < 90 ) { rasgo = [ 'agil', 'nativo']; } else
-  //   if ( tirada < 94 ) { rasgo = [ 'bello', 'malvado']; } else
-  //   if ( tirada < 98 ) { rasgo = [ 'débil', 'extraño']; } else
-  //   if ( tirada < 101 ) { rasgo = [ 'talentoso', 'ordinario']; }
+    return  PLANTILLA[Math.floor(Math.random() * PLANTILLA.length)];
+  }
 
-  //   return rasgo[posicion];
-  // }
+  generarPNJ() {
+    const LISTA = [];
 
-  // generarTipoPNJ(tirada: number) {
-  //   let tipo: string;
-  //   if ( tirada < 5 ) { tipo = 'un político'; } else
-  //   if ( tirada < 10 ) { tipo = 'un contacto'; } else
-  //   if ( tirada < 14 ) { tipo = 'un hombre de negocios'; } else
-  //   if ( tirada < 18 ) { tipo = 'un guía'; } else
-  //   if ( tirada < 22 ) { tipo = 'un servidor'; } else
-  //   if ( tirada < 26 ) { tipo = 'una celebridad'; } else
-  //   if ( tirada < 30 ) { tipo = 'un científico'; } else
-  //   if ( tirada < 34 ) { tipo = 'un doctor'; } else
-  //   if ( tirada < 38 ) { tipo = 'un criminal'; } else
-  //   if ( tirada < 42 ) { tipo = 'un investigador'; } else
-  //   if ( tirada < 46 ) { tipo = 'una esposa'; } else
-  //   if ( tirada < 50 ) { tipo = 'un experto'; } else
-  //   if ( tirada < 54 ) { tipo = 'un informante'; } else
-  //   if ( tirada < 58 ) { tipo = 'un chofer'; } else
-  //   if ( tirada < 62 ) { tipo = 'un matón'; } else
-  //   if ( tirada < 66 ) { tipo = 'un fanático'; } else
-  //   if ( tirada < 70 ) { tipo = 'un académico'; } else
-  //   if ( tirada < 74 ) { tipo = 'un asistente'; } else
-  //   if ( tirada < 78 ) { tipo = 'un obrero'; } else
-  //   if ( tirada < 82 ) { tipo = 'un secuaz'; } else
-  //   if ( tirada < 86 ) { tipo = 'un ocultista'; } else
-  //   if ( tirada < 90 ) { tipo = 'un niño'; } else
-  //   if ( tirada < 94 ) { tipo = 'un artista'; } else
-  //   if ( tirada < 98 ) { tipo = 'un piloto'; } else
-  //   if ( tirada < 101 ) { tipo = 'un soldado'; }
-  //   return tipo;
-  // }
+    for (let i = 1; i < this.d4(2); i++) {
+      const PERS = this.generarDatosPNJ(this.getSexo());
+      LISTA.push(PERS);
+    }
+    return LISTA;
+  }
 
-  // generarSecuenciaAccion() {
-  //   let accion: SecuenciaAccion;
+  generarDatosPNJ(concordancia: number) {
 
-  //   accion = {
-  //     tipo: this.generarAccionTipo(this.d100()),
-  //     participantes: this.generarAccionParticipantes(this.d100()),
-  //     lugar: this.generarAccionLugar(this.d100()),
-  //     complicaciones: this.generarAccionComplicaciones(this.d100()),
-  //   };
+        const TIPO_PROFESIONAL = [
+         ['un político', 'una política'],
+         ['un hombre de negocios', 'una mujer de negocios'],
+         ['un guía', 'una guía'],
+         ['un científico', 'una científica'],
+         ['un doctor', 'una doctora'],
+         ['un criminal', 'una criminal'],
+         ['un investigador', 'una investigadora'],
+         ['un chofer', 'una conductora'],
+         ['un matón', 'una ladrona'],
+         ['un fanático', 'una fanática'],
+         ['un académico', 'una estudiosa'],
+         ['un asistente', 'una criada'],
+         ['un obrero', 'una enfermera'],
+         ['un secuaz', 'la novia del mafioso'],
+         ['un ocultista', 'una ocultista'],
+         ['un artista', 'una cantante'],
+         ['un piloto', 'una piloto'],
+        ];
+
+        const TIPO_PERSONA = [
+          ['un famoso', 'una celebridad'],
+          ['un criminal', 'una criminal'],
+          ['una marido', 'una esposa'],
+          ['un experto', 'una experta'],
+          ['un informante', 'una informante'],
+          ['un fanático', 'una fanática'],
+          ['un niño', 'una niña'],
+        ];
+      const RASGO_PERSONAL = [
+        ['grande', 'grande' ],
+        ['feo', 'fea'],
+        ['desafortunado', 'desafortunada'],
+        ['sospechoso', 'sospechosa'],
+        ['amenazante', 'amenazante'],
+        ['reservado', 'reservada'],
+        ['débil', 'débil'],
+        ['fuerte', 'fuerte'],
+        ['extranjero', 'extranjero'],
+        ['pequeño', 'pequeña'],
+        ['rico', 'rica'],
+        ['digno de confianza', 'digno de confianza'],
+        ['de poca monta', 'de poca monta'],
+        ['desamparado', 'desamparada'],
+        ['ambicioso', 'ambiciosa'],
+        ['peculiar', 'peculiar'],
+        ['habilidoso', 'habilidosa'],
+        ['problemático', 'problemática'],
+        ['inteligente', 'inteligente'],
+        ['valiente', 'valiente'],
+        ['encantador', 'encantadora'],
+        ['salvaje', 'salvaje'],
+        ['de voluntad fuerte', 'de voluntad fuerte'],
+        ['famoso', 'famosa'],
+        ['duro', 'dura'],
+        ['estrafalario', 'estrafalaria'],
+        ['estúpido', 'estúpida'],
+        ['frío', 'fría'],
+        ['joven', 'joven'],
+        ['impulsivo', 'impulsiva'],
+        ['violento', 'violenta'],
+        ['torpe', 'torpe'],
+        ['afortunado', 'afortunad' ],
+        ['peligroso', 'peligrosa'],
+        ['viejo', 'viejA'],
+        ['agil', 'agil'],
+        ['atractivo', 'bella'],
+        ['malvado', 'malvada'],
+        ['débil', 'débil'],
+        ['extraño', 'extraña'],
+        ['talentoso', 'talentosa'],
+     ];
+
+     const RASGO_PROFESIONAL = [
+        ['desafortunado', 'desafortunada'],
+        ['sospechoso', 'sospechosa'],
+        ['amenazante', 'amenazante'],
+        ['reservado', 'reservada'],
+        ['débil', 'débil'],
+        ['fuerte', 'fuerte'],
+        ['extranjero', 'extranjero'],
+        ['rico', 'rica'],
+        ['digno de confianza', 'digno de confianza'],
+        ['de poca monta', 'de poca monta'],
+        ['desamparado', 'desamparada'],
+        ['ambicioso', 'ambiciosa'],
+        ['peculiar', 'peculiar'],
+        ['habilidoso', 'habilidosa'],
+        ['problemático', 'problemática'],
+        ['inteligente', 'inteligente'],
+        ['valiente', 'valiente'],
+        ['encantador', 'encantadora'],
+        ['de voluntad fuerte', 'de voluntad fuerte'],
+        ['famoso', 'famosa'],
+        ['duro', 'dura'],
+        ['estrafalario', 'estrafalaria'],
+        ['estúpido', 'estúpida'],
+        ['profesional', 'profesional'],
+        ['frío', 'fría'],
+        ['joven', 'joven'],
+        ['impulsivo', 'impulsiva'],
+        ['violento', 'violenta'],
+        ['torpe', 'torpe'],
+        ['afortunado', 'afortunada' ],
+        ['amateur', 'amateur'],
+        ['peligroso', 'peligrosA'],
+        ['viejo', 'vieja'],
+        ['agil', 'agil'],
+        ['atractivo', 'bella'],
+        ['malvado', 'malvada'],
+        ['débil', 'débil'],
+        ['extraño', 'extraña'],
+        ['talentoso', 'talentosa'],
+     ];
+
+    const PLANTILLA = [
+      `${ TIPO_PROFESIONAL[Math.floor(Math.random() * TIPO_PROFESIONAL.length)][concordancia]} ${ RASGO_PROFESIONAL[Math.floor(Math.random() * RASGO_PROFESIONAL.length)][concordancia]}`,
+      `${ TIPO_PROFESIONAL[Math.floor(Math.random() * TIPO_PROFESIONAL.length)][concordancia]} ${ RASGO_PROFESIONAL[Math.floor(Math.random() * RASGO_PROFESIONAL.length)][concordancia]}`,
+      `${ TIPO_PROFESIONAL[Math.floor(Math.random() * TIPO_PROFESIONAL.length)][concordancia]} ${ RASGO_PROFESIONAL[Math.floor(Math.random() * RASGO_PROFESIONAL.length)][concordancia]}`,
+      `${ TIPO_PROFESIONAL[Math.floor(Math.random() * TIPO_PROFESIONAL.length)][concordancia]} ${ RASGO_PROFESIONAL[Math.floor(Math.random() * RASGO_PROFESIONAL.length)][concordancia]}`,
+      `${ TIPO_PERSONA[Math.floor(Math.random() * TIPO_PERSONA.length)][concordancia]} ${ RASGO_PERSONAL[Math.floor(Math.random() * RASGO_PERSONAL.length)][concordancia]}`,
+    ];
+
+    return  PLANTILLA[Math.floor(Math.random() * PLANTILLA.length)];
+  }
 
 
-  //   return accion;
+  generarSecuenciaAccion() {
+    let accion: SecuenciaAccion;
+
+    accion = {
+      tipo: this.generarAccionTipo(),
+      participantes: this.generarAccionParticipantes(),
+      lugar: this.generarAccionLugar(this.d100()),
+      complicaciones: this.generarAccionComplicaciones(),
+    };
 
 
-  // }
+    return accion;
 
-  // generarAccionTipo(tirada: number) {
-  //   let tipo: string;
-  //   if ( tirada < 21 ) { tipo = 'una persecución a pie'; } else
-  //   if ( tirada < 51 ) { tipo = 'una persecución en vehiculo'; } else
-  //   if ( tirada < 71 ) { tipo = 'una pelea sin armas'; } else
-  //   if ( tirada < 101 ) { tipo = 'una pelea sin armas'; }
 
-  //   return tipo;
-  // }
+  }
 
-  // generarAccionParticipantes(tirada: number) {
-  //   let participa: string;
-  //   if ( tirada < 31 ) { participa = 'pocas personas (1-2 por personaje)'; } else
-  //   if ( tirada < 76 ) { participa = 'algunas personas (3-4 por personaje)'; } else
-  //   if ( tirada < 101 ) { participa = 'muchas personas (5+ por personaje)'; }
-  //   return participa;
-  // }
-  // generarAccionLugar(tirada: number) {
-  //   let lugar: string;
-  //   if ( tirada < 6 ) { lugar = 'entorno naútico (barco, puerto, etc.)'; } else
-  //   if ( tirada < 11 ) { lugar = 'entorno natural (parque, selva, etc.)'; } else
-  //   if ( tirada < 16 ) { lugar = 'tejados'; } else
-  //   if ( tirada < 21 ) { lugar = 'calle de la ciudad'; } else
-  //   if ( tirada < 26 ) { lugar = 'entorno residencial'; } else
-  //   if ( tirada < 31 ) { lugar = 'entorno de entretenimiento (teatro, estadio, discoteca, etc.)'; } else
-  //   if ( tirada < 36 ) { lugar = 'iglesia / templo / otros entornos religiosos'; } else
-  //   if ( tirada < 41 ) { lugar = 'entorno empresarial (oficina, fábrica, almacén, mercado, etc.)'; } else
-  //   if ( tirada < 46 ) { lugar = 'entorno de transporte (aeropuerto, estación de tren, trenes o aviones)'; } else
-  //   if ( tirada < 51 ) { lugar = 'entorno educativo (museo, colegio, etc.)'; } else
-  //   if ( tirada < 56 ) { lugar = 'entorno ciudadano (correos, ayuntamiento)'; } else
-  //   if ( tirada < 61 ) { lugar = 'barrio pobre o en mal estado'; } else
-  //   if ( tirada < 66 ) { lugar = 'en medio de la nada'; } else
-  //   if ( tirada < 71 ) { lugar = 'lugar secreto / escondido'; } else
-  //   if ( tirada < 76 ) { lugar = 'base (de los héroes u otra)'; } else
-  //   if ( tirada < 81 ) { lugar = 'entorno militar (cuartel, etc.)'; } else
-  //   if ( tirada < 86 ) { lugar = 'restaurante'; } else
-  //   if ( tirada < 91 ) { lugar = 'laboratorio'; } else
-  //   if ( tirada < 96 ) { lugar = 'punto de referencia'; } else
-  //   if ( tirada < 101 ) { lugar = 'entorno inusual (bajo el agua, en el espacio, bajo tierra, etc.)'; }
-  //   return lugar;
-  // }
-  // generarAccionComplicaciones(tirada: number) {
-  //   let complicacion: string;
-  //   if ( tirada < 31 ) { complicacion = '... no, realmente no se complica.'; } else
-  //   if ( tirada < 51 ) { complicacion = 'hay testigos inocentes en la zona'; } else
-  //   if ( tirada < 61 ) { complicacion = 'el entorno es dificultoso (lluvia, niebla, movimiento rápido…) y cualquier acción se hace más difícil'; } else
-  //   if ( tirada < 81 ) { complicacion = 'hay multitud de objetos que pueden ser usados como arma (platos de un restaurante, barras de hierro en una fundición…)'; } else
-  //   if ( tirada < 101 ) { complicacion = `
-  //   ¡Nueva escena de acción!
-  //   La cosa se complica y se produce
-  //       ${this.generarAccionTipo(this.d100())} en ${this.generarAccionLugar(this.d100())}
-  //       que implica ${this.generarAccionParticipantes(this.d100())} y que se complica ${this.generarAccionComplicaciones(this.d100())}`; }
-  //   return complicacion;
-  // }
-  // generarGiroArgumental(tirada: number) {
-  //   let giro: string;
-  //   if ( tirada < 11 ) { giro = '¡Traición! Un PNJ en el que confiaban ha demostrado no ser de confianza'; } else
-  //   if ( tirada < 36 ) { giro = `¡Cambio de aires! Antes de finalizar este acto la acción se traslada a ${this.generarLocalizacion(this.d100())}`; } else
-  //   if ( tirada < 41 ) { giro = `El que parecía ser el villano principal resulta ser un mero comparsa o quizá nunca tuvo nada que ver con este asunto. Quien está detrás de todo es ${this.generarVillano(this.d100())}` ; } else
-  //   if ( tirada < 56 ) { giro = `¡Planes dentro de planes! Hay planes realmente complicados y este acaba de descubrirse que implicaba realmente ${this.generarPlanQue(this.d100())} ${this.generarPlanAQuien(this.d100())} `; } else
-  //   if ( tirada < 66 ) { giro = '¡Inversión! Parece que giran las tornas y lo que parecía blanco es negro. De repente todo cambia (Si los héroes colaboraban con la policía ahora les persigue, si todo parecía estar en su contra ahora parece ahber alguna luz...)'; } else
-  //   if ( tirada < 81 ) { giro = 'Ocurre algo extraño y sin aparente explicación: El cielo brilla rojo sangre, todas las radios comienzan a emitir una misteriosa música...'; } else
-  //   if ( tirada < 86 ) { giro = '¡Deus Ex machina! De repente llega una ayuda inesperada'; } else
-  //   if ( tirada < 101 ) { giro = 'No hay ningún giro reseñable'; }
-  //   return giro;
+  generarAccionTipo() {
 
-  // }
+    const ACCION  = [
+      'una persecución a pie',
+      'una persecución en vehiculo',
+      'una pelea sin armas',
+      'una pelea sin armas',
+     ];
+
+    const PLANTILLA = [
+      `${ ACCION[Math.floor(Math.random() * ACCION.length)]}`,
+    ];
+
+    return  PLANTILLA[Math.floor(Math.random() * PLANTILLA.length)];
+  }
+
+  generarAccionParticipantes() {
+    const PARTICIPANTES  = [
+        'pocas personas (1-2 por personaje)',
+        'algunas personas (3-4 por personaje)',
+        'muchas personas (5+ por personaje)',
+     ];
+
+    const PLANTILLA = [
+      `${ PARTICIPANTES[Math.floor(Math.random() * PARTICIPANTES.length)]}`,
+    ];
+
+    return  PLANTILLA[Math.floor(Math.random() * PLANTILLA.length)];
+  }
+  generarAccionLugar(tirada: number) {
+    const LUGAR  = [
+      'entorno naútico (barco, puerto, etc.)',
+      'entorno natural (parque, selva, etc.)',
+      'tejados',
+      'calle de la ciudad',
+      'entorno residencial',
+      'entorno de entretenimiento (teatro, estadio, discoteca, etc.)',
+      'iglesia / templo / otros entornos religiosos',
+      'entorno empresarial (oficina, fábrica, almacén, mercado, etc.)',
+      'entorno de transporte (aeropuerto, estación de tren, trenes o aviones)',
+      'entorno educativo (museo, colegio, etc.)',
+      'entorno ciudadano (correos, ayuntamiento)',
+      'barrio pobre o en mal estado',
+      'en medio de la nada',
+      'lugar secreto / escondido',
+      'base (de los héroes u otra)',
+      'entorno militar (cuartel, etc.)',
+      'restaurante',
+      'laboratorio',
+      'punto de referencia',
+      'entorno inusual (bajo el agua, en el espacio, bajo tierra, etc.)',
+   ];
+
+  const PLANTILLA = [
+    `${ LUGAR[Math.floor(Math.random() * LUGAR.length)]}`,
+  ];
+
+  return  PLANTILLA[Math.floor(Math.random() * PLANTILLA.length)];
+  }
+  generarAccionComplicaciones() {
+
+   // if ( tirada < 101 ) { complicacion = `
+   // ¡Nueva escena de acción!
+   // La cosa se complica y se produce
+   //     ${this.generarAccionTipo(this.d100())} en ${this.generarAccionLugar(this.d100())}
+   //     que implica ${this.generarAccionParticipantes(this.d100())} y que se complica ${this.generarAccionComplicaciones(this.d100())}`; }
+   // return complicacion;
+
+    const COMPLICACIONES  = [
+      '... no, realmente no se complica.',
+      'hay testigos inocentes en la zona',
+      'el entorno es dificultoso (lluvia, niebla, movimiento rápido…) y cualquier acción se hace más difícil',
+      'hay multitud de objetos que pueden ser usados como arma (platos de un restaurante, barras de hierro en una fundición…)',
+     ];
+
+    const PLANTILLA = [
+      `${ COMPLICACIONES[Math.floor(Math.random() * COMPLICACIONES.length)]}`,
+    ];
+
+    return  PLANTILLA[Math.floor(Math.random() * PLANTILLA.length)];
+  }
+  generarGiroArgumental() {
+    const GIRO  = [
+      '¡Traición! Un PNJ en el que confiaban ha demostrado no ser de confianza',
+      `¡Cambio de aires! Antes de finalizar este acto la acción se traslada a ${this.generarLocalizacion()}`,
+      `El que parecía ser el villano principal resulta ser un mero comparsa o quizá nunca tuvo nada que ver con este asunto. Quien está detrás de todo es ${this.generarVillano(this.getSexo(), '1')}` ,
+      `¡Planes dentro de planes! Hay planes realmente complicados y este acaba de descubrirse que implicaba realmente ${this.generarPlan()} `,
+      '¡Inversión! Parece que giran las tornas y lo que parecía blanco es negro. De repente todo cambia (Si los héroes colaboraban con la policía ahora les persigue, si todo parecía estar en su contra ahora parece ahber alguna luz...)',
+      'Ocurre algo extraño y sin aparente explicación: El cielo brilla rojo sangre, todas las radios comienzan a emitir una misteriosa música...',
+      '¡Deus Ex machina! De repente llega una ayuda inesperada',
+
+    ];
+
+    const PLANTILLA = [
+      `${ GIRO[Math.floor(Math.random() * GIRO.length)]}`,
+      'No hay ningún giro reseñable',
+      'No hay ningún giro reseñable',
+      'No hay ningún giro reseñable',
+      'No hay ningún giro reseñable',
+    ];
+
+    return  PLANTILLA[Math.floor(Math.random() * PLANTILLA.length)];
+
+  }
 }
 
  export interface Genero {

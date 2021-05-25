@@ -20,15 +20,13 @@
                     <div class="card-body">
                         <h3 class="card-title titulogenerado">{{ titulo }}</h3>
                         <p class="card-text"><small class="text-muted">Originalmente publicada en <strong>{{ aventura.publicadaEn }} #{{ aventura.numeroPublicacion }}</strong></small></p>
-                        <p class="card-text"><small class="text-muted">Género: <strong>{{ aventura.genero.nombre }} </strong></small></p>
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title titulogenerado">Sinopsis</h4>
                                 <p class="card-text titulogenerado"> {{ aventura.intro.villanoPrincipal }} {{ aventura.intro.plan }} {{ aventura.intro.localizacion }}</p>
-                                <p class="card-text titulogenerado"> Secuaces {{ aventura.intro.villanos }} </p>
                             </div>
 
-                            <!-- <div class="card-body">
+                            <div class="card-body">
                                 <h4 class="card-title titulogenerado">Primer acto</h4>
                                 <p class="card-text titulogenerado">
                                     <Strong>Gancho:</Strong> {{ aventura.actoPrimero.gancho }}</p>
@@ -37,7 +35,7 @@
                                     <div class="col-md-6">
                                         <h5 class="card-title titulogenerado">PNJs relevantes</h5>
                                         <ul>
-                                            <li class="titulogenerado" *ngFor="let personaje of aventura.actoPrimero.personajes">{{ personaje.tipo }} {{ personaje.descriptor2 }} y {{ personaje.descriptor1 }}</li>
+                                            <li class="titulogenerado" *ngFor="let personaje of aventura.actoPrimero.personajes">{{ personaje }}</li>
                                         </ul>
                                     </div>
                                     <div class="col-md-6">
@@ -49,8 +47,8 @@
                                 </div>
                                 <p class="card-text titulogenerado">
                                     <Strong>Giro argumental</Strong> {{ aventura.actoPrimero.giroGuion }} </p>
-                            </div> -->
-                            <!-- <div class="card-body">
+                            </div>
+                            <div class="card-body">
                                 <h4 class="card-title titulogenerado">Segundo acto</h4>
                                 <p class="card-text titulogenerado">
                                     <Strong>Gancho:</Strong> {{ aventura.actoSegundo.gancho }}</p>
@@ -59,7 +57,7 @@
                                     <div class="col-md-6">
                                         <h5 class="card-title titulogenerado">PNJs relevantes</h5>
                                         <ul>
-                                            <li class="titulogenerado" *ngFor="let personaje of aventura.actoSegundo.personajes">{{ personaje.tipo }} {{ personaje.descriptor2 }} y {{ personaje.descriptor1 }}</li>
+                                            <li class="titulogenerado" *ngFor="let personaje of aventura.actoSegundo.personajes">{{ personaje }}</li>
                                         </ul>
                                     </div>
                                     <div class="col-md-6">
@@ -81,7 +79,7 @@
                                     <div class="col-md-6">
                                         <h5 class="card-title titulogenerado">PNJs relevantes</h5>
                                         <ul>
-                                            <li class="titulogenerado" *ngFor="let personaje of aventura.actoTercero.personajes">{{ personaje.tipo }} {{ personaje.descriptor2 }} y {{ personaje.descriptor1 }}</li>
+                                            <li class="titulogenerado" *ngFor="let personaje of aventura.actoTercero.personajes">{{ personaje }}</li>
                                         </ul>
                                     </div>
                                     <div class="col-md-6">
@@ -103,7 +101,7 @@
                                     <div class="col-md-6">
                                         <h5 class="card-title titulogenerado">PNJs relevantes</h5>
                                         <ul>
-                                            <li class="titulogenerado" *ngFor="let personaje of aventura.actoCuarto.personajes">{{ personaje.tipo }} {{ personaje.descriptor2 }} y {{ personaje.descriptor1 }}</li>
+                                            <li class="titulogenerado" *ngFor="let personaje of aventura.actoCuarto.personajes">{{ personaje }} </li>
                                         </ul>
                                     </div>
                                     <div class="col-md-6">
@@ -115,7 +113,7 @@
                                 </div>
                                 <p class="card-text titulogenerado">
                                     <Strong>Giro argumental</Strong> {{ aventura.actoCuarto.giroGuion }} </p>
-                            </div>-->
+                            </div>
                         </div>
 
 
