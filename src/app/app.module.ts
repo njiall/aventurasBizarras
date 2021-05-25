@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
 
 // Rutas
 import { APP_ROUTING } from './app.routes';
@@ -34,6 +35,7 @@ import { ContactoComponent } from './contacto/contacto.component';
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
     APP_ROUTING
   ],
   providers: [
