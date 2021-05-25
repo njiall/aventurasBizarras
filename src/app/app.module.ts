@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
 
 // Rutas
 import { APP_ROUTING } from './app.routes';
@@ -15,6 +17,7 @@ import { AplicacionesComponent } from './components/aplicaciones/aplicaciones.co
 import { GeneradorTitulosComponent } from './components/generador-titulos/generador-titulos.component';
 import { LanzaDadosComponent } from './components/lanza-dados/lanza-dados.component';
 import { GeneradorAventurasComponent } from './components/generador-aventuras/generador-aventuras.component';
+import { ContactoComponent } from './contacto/contacto.component';
 
 @NgModule({
   declarations: [
@@ -25,10 +28,14 @@ import { GeneradorAventurasComponent } from './components/generador-aventuras/ge
     AplicacionesComponent,
     GeneradorTitulosComponent,
     LanzaDadosComponent,
-    GeneradorAventurasComponent
+    GeneradorAventurasComponent,
+    ContactoComponent
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
     APP_ROUTING
   ],
   providers: [
