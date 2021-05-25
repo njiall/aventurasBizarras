@@ -6,22 +6,45 @@ import { Injectable } from '@angular/core';
 export class GeneradorAventurasService {
 
   aventura: any;
+
   version = 'V_0.1'; // Versión del servicio
 
   getVersion() {
     return this.version;
   }
+
+
   generarAventura() {
+
+    const gen = this.getGenero();
+
     this.aventura =  {
-        intro: this.generarSinopsis(),
+        intro: this.generarSinopsis(gen.id),
         // actoPrimero: this.generarActo(),
         // actoSegundo: this.generarActo(),
         // actoTercero: this.generarActo(),
         // actoCuarto: this.generarActo(),
         publicadaEn: this.generaPublicacionRevista(),
-        numeroPublicacion: this.generaPublicacionNumero()
+        numeroPublicacion: this.generaPublicacionNumero(),
+        genero : gen
       };
     return this.aventura;
+  }
+
+  getGenero() {
+    let salida: Genero;
+    const GENEROS = [
+      ['1', 'Pulp']
+    ];
+
+    const generoTemp = GENEROS[Math.floor(Math.random() * GENEROS.length)];
+
+    salida = {
+      id: generoTemp[0],
+      nombre: generoTemp[1],
+    };
+
+    return salida;
   }
 
   /**
@@ -35,22 +58,18 @@ export class GeneradorAventurasService {
     return Math.floor(Math.random() * 1000 + 1);
   }
 
-  generarSinopsis() {
+  generarSinopsis(genero: string) {
 
     let intro: Sinopsis;
 
-    const GN_VILLANOS =  this.generoNumero();
-    const VILLANO_PRINCIPAL = GN_VILLANOS % 2 == 0;
+    const GN_VILLANO =  this.getSexo();
+    const GN_SECUACES =  this.getSexo() + this.getNumero();
 
     intro = {
-      villanos : this.generarVillano(GN_VILLANOS),
-      villanoPrincipal: VILLANO_PRINCIPAL ? `${ VILLANO_PRINCIPAL }` :  `${intro.villanos }`, // 'TRUE' : intro.villanos,
-      // localizacion : this.generarLocalizacion(this.d100()),
-      // plan1 : this.generarPlanQue(this.d100()),
-      // plan2 : this.generarPlanAQuien(this.d100())
-      localizacion : 'SIN DEFINIR',
-      plan1 : 'SIN DEFINIR',
-      plan2 : 'SIN DEFINIR',
+      villanoPrincipal: this.generarVillano(GN_VILLANO, genero).replace('de el', 'del'),
+      villanos : 'SIN DEFINIR',
+      plan : this.generarPlan().replace('de el', 'del'),
+      localizacion : this.generarLocalizacion().replace('de el', 'del'),
     };
 
     return intro;
@@ -86,108 +105,159 @@ export class GeneradorAventurasService {
     return total;
   }
 
-  generoNumero() {
+  getSexo() {
      /*
     Concordancia del título:
-      0 Masculino singular
-      1 Masculino plural
-      2 Femenino singular
-      3 Femenino plural
+      0 Masculino
+      1 Femenino
      */
-      return Math.floor(Math.random() * 4);
+    const SEXO = Math.floor(Math.random() * 5);
+    return SEXO === 5 ? 1 : 0;
   }
+
+  getNumero() {
+    /*
+   Concordancia del título:
+     1 Singular
+     2 Plural
+    */
+     return Math.floor(Math.random() * 2) + 1;
+ }
 
   /**
    * Generadores secundarios.
    */
 
-   generarVillano(concordancia: number) {
+   generarVillano(concordancia: number, genero: string) {
 
-     const VILLANO = [
-       ['un gangster' , 'unos gangsteres', 'una femme fatale', 'una banda de mujeres'],
-       ['un ocultista' , 'unos ocultistas', 'una ocultista', 'unas ocultistas'],
-       ['un terror sobrenatural' , 'unos terrores sobrenaturales', 'una amenaza sobrenatural', 'unas amenazas sobrenaturales'],
-       ['un lider cultista' , 'miembros de un culto', 'una lider cultista', 'unas cultistas'],
-       ['el dirigente de una civilización perdida' , 'exiliados de una civilización perdida', 'la reina de una civilización perdida', 'unas nobles huidas de una civilización perdida'],
-       ['un científico loco' , 'miembros de un culto', 'una lider cultista', 'unas cultistas'],
+     let VILLANO = [];
+
+     const VILLANOPULP = [
+       ['un gangster' , 'una femme fatale'],
+       ['un ocultista' , 'una ocultista'],
+       ['un terror sobrenatural' , 'una amenaza sobrenatural'],
+       ['un lider cultista' , 'una lider cultista'],
+       ['el dirigente de una civilización perdida', 'la reina de una civilización perdida'],
+       ['un científico loco' , 'una femme fatale'],
+       ['un extranjero' , 'una extranjera'],
+       ['un ladrón' , 'una ladrona'],
+       ['una asesina' , 'un asesino'],
+       ['un poli corrupto' , 'una poli corrupta'],
+       ['un dictador' , 'una dictadora'],
+       ['un gerifalte nazi' , 'una espía nazi'],
+       ['un magnate de los negocios' , 'una magnate de los negocios'],
+       ['un señor del crimen' , 'una señora del crimen'],
+       ['un pirata' , 'una pirata'],
+       ['un anarquista' , 'una anarquista'],
+       ['un personaje de la jet set' , 'un personaje de la jet set'],
+       ['un político corrupto' , 'una política corrupta'],
+       ['un invasor alienígena' , 'una invasora alienígena'],
+       ['una mente criminal' , 'una mente criminal'],
+       ['la némesis de nuestros héroes' , 'la némesis de nuestros héroes'],
      ];
 
-   //     if ( tirada < 34 ) { villano = 'un científico loco'; } else
-  //     if ( tirada < 38 ) { villano = 'un extranjero malvado'; } else
-  //     if ( tirada < 42 ) { villano = 'un ladrón'; } else
-  //     if ( tirada < 46 ) { villano = 'una asesina'; } else
-  //     if ( tirada < 50 ) { villano = 'una femme fatale'; } else
-  //     if ( tirada < 54 ) { villano = 'un poli corrupto'; } else
-  //     if ( tirada < 58 ) { villano = 'un dictador'; } else
-  //     if ( tirada < 62 ) { villano = 'un nazi'; } else
-  //     if ( tirada < 66 ) { villano = 'un magnate de los negocios'; } else
-  //     if ( tirada < 70 ) { villano = 'un señor del crimen'; } else
-  //     if ( tirada < 74 ) { villano = 'un pirata'; } else
-  //     if ( tirada < 78 ) { villano = 'un anarquista'; } else
-  //     if ( tirada < 82 ) { villano = 'un personaje de la jet set'; } else
-  //     if ( tirada < 86 ) { villano = 'un político corrupto'; } else
-  //     if ( tirada < 89 ) { villano = 'un invasor alienígena'; } else
-  //     if ( tirada < 94 ) { villano = 'una mente criminal'; } else
-  //     if ( tirada < 98 ) { villano = 'la némesis de nuestros héroes'; } else
-  //     if ( tirada < 101 ) {
-  //       villano = `${ this.generarVillano(this.d100())} y ${ this.generarVillano(this.d100())}`; }
+     if (genero === '1') {
+        VILLANO = VILLANOPULP;
+     }
 
-  const PLANTILLA = [
+    const PLANTILLA = [
+      ` ${ VILLANO[Math.floor(Math.random() * VILLANO.length)][concordancia]} `,
+      ` ${ VILLANO[Math.floor(Math.random() * VILLANO.length)][concordancia]} `,
+      ` ${ VILLANO[Math.floor(Math.random() * VILLANO.length)][concordancia]} `,
+      ` ${ VILLANO[Math.floor(Math.random() * VILLANO.length)][concordancia]} `,
     ` ${ VILLANO[Math.floor(Math.random() * VILLANO.length)][concordancia]} ${ this.getModificador(concordancia) }`,
     ];
 
-  return  PLANTILLA[Math.floor(Math.random() * PLANTILLA.length)];
+    return  PLANTILLA[Math.floor(Math.random() * PLANTILLA.length)];
 
    }
+
+   generarSecuaces(villano: number) {
+
+    let VILLANO = [];
+
+    //  const VILLANOPULP = [
+    //    ['un gangster' , 'una femme fatale'],
+    //    ['un ocultista' , 'una ocultista'],
+    //    ['un terror sobrenatural' , 'una amenaza sobrenatural'],
+    //    ['un lider cultista' , 'una lider cultista'],
+    //    ['el dirigente de una civilización perdida', 'la reina de una civilización perdida'],
+    //    ['un científico loco' , 'una femme fatale'],
+    //    ['un extranjero' , 'una extranjera'],
+    //    ['un ladrón' , 'una ladrona'],
+    //    ['una asesina' , 'un asesino'],
+    //    ['un poli corrupto' , 'una poli corrupta'],
+    //    ['un dictador' , 'una dictadora'],
+    //    ['un nazi' , 'una nazi'],
+    //    ['un magnate de los negocios' , 'una magnate de los negocios'],
+    //    ['un señor del crimen' , 'una señora del crimen'],
+    //    ['un pirata' , 'una pirata'],
+    //    ['un anarquista' , 'una anarquista'],
+    //    ['un personaje de la jet set' , 'un personaje de la jet set'],
+    //    ['un político corrupto' , 'una política corrupta'],
+    //    ['un invasor alienígena' , 'una invasora alienígena'],
+    //    ['una mente criminal' , 'una mente criminal'],
+    //    ['la némesis de nuestros héroes' , 'la némesis de nuestros héroes'],
+    //  ];
+
+    //  if (genero === '1') {
+    //     VILLANO = VILLANOPULP;
+    //  }
+
+    // const PLANTILLA = [
+    //   ` ${ VILLANO[Math.floor(Math.random() * VILLANO.length)][concordancia]} `,
+    //   ` ${ VILLANO[Math.floor(Math.random() * VILLANO.length)][concordancia]} `,
+    //   ` ${ VILLANO[Math.floor(Math.random() * VILLANO.length)][concordancia]} `,
+    //   ` ${ VILLANO[Math.floor(Math.random() * VILLANO.length)][concordancia]} `,
+    // ` ${ VILLANO[Math.floor(Math.random() * VILLANO.length)][concordancia]} ${ this.getModificador(concordancia) }`,
+    // ];
+
+    // return  PLANTILLA[Math.floor(Math.random() * PLANTILLA.length)];
+
+  }
 
    getModificador(concordancia: number) {
 
     const ANIMADO = [
-      ['enfadado', 'enfadados', 'enfadada', 'enfadadas'],
-      ['mecánico', 'mecánicos', 'mecánica', 'mecánicas'],
-      ['acechante', 'acechantes', 'acechante', 'acechantes'],
-      ['inmortal', 'inmortales', 'inmortal', 'inmortales'],
-      ['salvaje', 'salvajes', 'salvaje', 'salvajes'],
-      ['cubierto de cicatrices', 'cubiertos de cicatrices', 'cubierta de cicatrices', 'cubiertas de cicatrices'],
-      ['sonriente', 'sonrientes', 'sonriente', 'sonrientes'],
-      ['vampírico', 'vampíricos', 'vampírica', 'vampíricas'],
-    ];
-
-    const INANIMADO = [
-      [`${ this.getColor(concordancia) }`, `${ this.getColor(concordancia) }`, `${ this.getColor(concordancia) }`, `${ this.getColor(concordancia) }`],
-      ['prohibido', 'prohibidos', 'prohibida', 'prohibidas'],
-      ['olvidado', 'olvidados', 'olvidada', 'olvidadas'],
+      ['enfadado', 'enfadada', 'enfadados', 'enfadadas'],
+      ['mecánico', 'mecánica', 'mecánicos', 'mecánicas'],
+      ['acechante', 'acechante', 'acechantes', 'acechantes'],
+      ['inmortal', 'inmortal', 'inmortales', 'inmortales'],
+      ['salvaje', 'salvaje', 'salvajes', 'salvajes'],
+      ['cubierto de cicatrices', 'cubierta de cicatrices', 'cubiertos de cicatrices', 'cubiertas de cicatrices'],
+      ['sonriente', 'sonriente', 'sonrientes', 'sonrientes'],
+      ['vampírico', 'vampírica', 'vampiricos', 'vampíricas'],
     ];
 
     const OJOS =  [
       [ `de ojos ${ this.getColor(1) }`, `de ojos ${ this.getColor(1) }` ,  `de ojos ${ this.getColor(1) }`, `de ojos ${ this.getColor(1) }` ],
       [ `de ojos ${ this.getColor(1) }`, `de ojos ${ this.getColor(1) }` ,  `de ojos ${ this.getColor(1) }`, `de ojos ${ this.getColor(1) }` ],
-      ['tuerto', 'tuertos', 'tuerta', 'tuertas'],
+      ['tuerto', 'tuerta', 'tuertos', 'tuertas'],
       ['de tres ojos', 'de tres ojos', 'de tres ojos', 'de tres ojos'],
       ['sin ojos', 'sin ojos', 'sin ojos', 'sin ojos'],
       ];
 
     const VARIADO = [
       [`${ this.getColor(concordancia) }`, `${ this.getColor(concordancia) }`, `${ this.getColor(concordancia) }`, `${ this.getColor(concordancia) }`],
-      ['abominable', 'abominables', 'abominable', 'abominables'],
+      ['abominable', 'abominable', 'abominables', 'abominables'],
       ['de hueso', 'de hueso', 'de hueso', 'de hueso'],
       ['de hueso', 'de hueso', 'de hueso', 'de hueso'],
       ['de cristal', 'de cristal', 'de cristal', 'de cristal'],
       ['de sangre', 'de sangre', 'de sangre', 'de sangre'],
-      ['maldito', 'malditos', 'maldita', 'malditas'],
-      ['demoniaco', 'demoniacos', 'demoniaca', 'demoniacas'],
-      ['diamantino', 'diamantinos', 'diamantina', 'diamantinas'],
-      ['encantado', 'encantados', 'encantada', 'encantadas'],
-      ['olvidado', 'olvidados', 'olvidada', 'olvidadas'],
-      ['gigante', 'gigantes', 'gigante', 'gigantes'],
-      ['oculto', 'ocultos', 'oculta', 'ocultas'],
-      ['relampagueante', 'relampagueantes', 'relampagueante', 'relampagueantes'],
-      ['solitario', 'solitarios', 'solitaria', 'solitarias'],
-      ['de la luna', 'lunares', 'de la luna', 'lunares'],
-      ['de marte', 'de marte', 'de venus', 'de venus'],
-      ['mecánico', 'mecánicos', 'mecánica', 'mecánicas'],
+      ['maldito', 'maldita', 'malditos', 'malditas'],
+      ['demoniaco', 'demoniaca', 'demoniacos', 'demoniacas'],
+      ['diamantino', 'diamantina', 'diamantinos', 'diamantinas'],
+      ['encantado', 'encantada', 'encantados', 'encantadas'],
+      ['olvidado', 'olvidada', 'olvidados', 'olvidadas'],
+      ['gigante', 'gigante', 'gigantes', 'gigantes'],
+      ['oculto', 'oculta', 'ocultos', 'ocultas'],
+      ['relampagueante', 'relampagueante', 'relampagueantes', 'relampagueantes'],
+      ['solitario', 'solitaria', 'solitarios', 'solitarias'],
+      ['de la luna', 'de la luna', 'lunares', 'lunares'],
+      ['de marte', 'de venus', 'de marte', 'de venus'],
+      ['mecánico', 'mecánica', 'mecánicos', 'mecánicas'],
       ['espiritual', 'espirituales', 'espiritual', 'espirituales'],
-      ['tranquilo', 'tranquilos', 'tranquila', 'tranquilas'],
+      ['tranquilo', 'tranquila', 'tranquilos', 'tranquilas'],
     ];
 
     const PLANTILLA = [
@@ -199,7 +269,6 @@ export class GeneradorAventurasService {
       ` ${ VARIADO[Math.floor(Math.random() * VARIADO.length)][concordancia]}`,
       ` ${ ANIMADO[Math.floor(Math.random() * ANIMADO.length)][concordancia]}`,
       ` ${ VARIADO[Math.floor(Math.random() * VARIADO.length)][concordancia]}`,
-      ` ${ INANIMADO[Math.floor(Math.random() * INANIMADO.length)][concordancia]}`,
     ];
 
     return  PLANTILLA[Math.floor(Math.random() * PLANTILLA.length)];
@@ -223,101 +292,134 @@ export class GeneradorAventurasService {
     return  COLOR[Math.floor(Math.random() * COLOR.length)][concordancia];
   }
 
-  // generarLocalizacion(tirada: number) {
-  //   let localizacion: string;
-  //   if (tirada < 5 ) { localizacion = 'los muelles'; }  else
-  //   if ( tirada < 10 ) { localizacion = 'la jungla'; } else
-  //   if ( tirada < 14 ) { localizacion = 'un pais asiático'; } else
-  //   if ( tirada < 18 ) { localizacion = 'un pais europeo'; } else
-  //   if ( tirada < 22 ) { localizacion = 'un pais del tercer mundo'; } else
-  //   if ( tirada < 26 ) { localizacion = 'los bajos fondos'; } else
-  //   if ( tirada < 30 ) { localizacion = 'chinatown'; } else
-  //   if ( tirada < 34 ) { localizacion = 'el desierto'; } else
-  //   if ( tirada < 38 ) { localizacion = 'el mar'; } else
-  //   if ( tirada < 42 ) { localizacion = 'una ciudad perdida'; } else
-  //   if ( tirada < 46 ) { localizacion = 'una base secreta'; } else
-  //   if ( tirada < 50 ) { localizacion = 'el distrito financiero'; } else
-  //   if ( tirada < 54 ) { localizacion = 'unos almacenes'; } else
-  //   if ( tirada < 58 ) { localizacion = 'el aire'; } else
-  //   if ( tirada < 62 ) { localizacion = 'un barrio rico'; } else
-  //   if ( tirada < 66 ) { localizacion = 'una granja'; } else
-  //   if ( tirada < 70 ) { localizacion = 'un bosque'; } else
-  //   if ( tirada < 74 ) { localizacion = 'otra ciudad'; } else
-  //   if ( tirada < 78 ) { localizacion = 'el campo'; } else
-  //   if ( tirada < 82 ) { localizacion = 'la universidad'; } else
-  //   if ( tirada < 86 ) { localizacion = 'el ayuntamiento'; } else
-  //   if ( tirada < 89 ) { localizacion = 'el museo'; } else
-  //   if ( tirada < 94 ) { localizacion = 'el rascacielos'; } else
-  //   if ( tirada < 98 ) { localizacion = 'el ártico'; } else
-  //   if ( tirada < 101) {
-  //     localizacion = `${ this.generarLocalizacion(this.d100())} de ${ this.generarLocalizacion(this.d100())}`; }
+   generarLocalizacion() {
 
-  //   return localizacion;
-  // }
+    const LUGAR = [
+     'los muelles',
+     'la jungla',
+     'un pais asiático',
+     'un pais europeo',
+     'un pais del tercer mundo',
+     'los bajos fondos',
+     'chinatown',
+     'el desierto',
+     'el mar',
+     'una ciudad perdida',
+     'una base secreta',
+     'el distrito financiero',
+     'unos almacenes',
+     'el aire',
+     'un barrio rico',
+     'una granja',
+     'un bosque',
+     'otra ciudad',
+     'el campo',
+     'la universidad',
+     'el ayuntamiento',
+     'el museo',
+     'el rascacielos',
+     'el ártico',
+    ];
 
-  // generarPlanQue(tirada: number) {
-  //   let que: string;
-  //   if (tirada < 5 ) { que = 'manipular'; }  else
-  //     if ( tirada < 10 ) { que = 'vender'; } else
-  //     if ( tirada < 14 ) { que = 'adquirir'; } else
-  //     if ( tirada < 18 ) { que = 'matar'; } else
-  //     if ( tirada < 22 ) { que = 'controlar'; } else
-  //     if ( tirada < 26 ) { que = 'robar'; } else
-  //     if ( tirada < 29 ) { que = 'crear'; } else
-  //     if ( tirada < 34 ) { que = 'cazar'; } else
-  //     if ( tirada < 38 ) { que = 'aterrorizar'; } else
-  //     if ( tirada < 42 ) { que = 'infiltrar'; } else
-  //     if ( tirada < 46 ) { que = 'derrocar'; } else
-  //     if ( tirada < 50 ) { que = 'destruir'; } else
-  //     if ( tirada < 54 ) { que = 'secuestrar'; } else
-  //     if ( tirada < 58 ) { que = 'chantajear'; } else
-  //     if ( tirada < 62 ) { que = 'secuestrar'; } else
-  //     if ( tirada < 66 ) { que = 'bombardear'; } else
-  //     if ( tirada < 70 ) { que = 'pasar de contrabando'; } else
-  //     if ( tirada < 74 ) { que = 'asesinar'; } else
-  //     if ( tirada < 78 ) { que = 'atracar'; } else
-  //     if ( tirada < 82 ) { que = 'atacar'; } else
-  //     if ( tirada < 86 ) { que = 'regir'; } else
-  //     if ( tirada < 89 ) { que = 'tomar'; } else
-  //     if ( tirada < 94 ) { que = 'destruir'; } else
-  //     if ( tirada < 98 ) { que = 'chantajear'; } else
-  //     if ( tirada < 101 ) {
-  //       que = `${ this.generarPlanQue(this.d100())} y ${ this.generarPlanQue(this.d100())}`; }
+    const PLANTILLA = [
+        ` en ${ LUGAR[Math.floor(Math.random() * LUGAR.length)]} `,
+    ];
 
-  //   return que;
-  // }
+    return  PLANTILLA[Math.floor(Math.random() * PLANTILLA.length)];
+   }
 
-  // generarPlanAQuien(tirada: number) {
-  //   let quien: string;
-  //   if (tirada < 5 ) { quien = 'a un monstruo'; }  else
-  //     if ( tirada < 10 ) { quien = 'un edificio'; } else
-  //     if ( tirada < 14 ) { quien = 'a una gente'; } else
-  //     if ( tirada < 18 ) { quien = 'a un país'; } else
-  //     if ( tirada < 22 ) { quien = 'un tesoro'; } else
-  //     if ( tirada < 26 ) { quien = 'a un enemigo'; } else
-  //     if ( tirada < 29 ) { quien = 'un objeto'; } else
-  //     if ( tirada < 34 ) { quien = 'un invento'; } else
-  //     if ( tirada < 38 ) { quien = 'a una mujer'; } else
-  //     if ( tirada < 42 ) { quien = 'a un hombre'; } else
-  //     if ( tirada < 46 ) { quien = 'a nuestro/s heroe/s'; } else
-  //     if ( tirada < 50 ) { quien = 'un dinero'; } else
-  //     if ( tirada < 54 ) { quien = 'una ciudad'; } else
-  //     if ( tirada < 58 ) { quien = 'al mundo'; } else
-  //     if ( tirada < 62 ) { quien = 'un vehículo'; } else
-  //     if ( tirada < 66 ) { quien = 'un negocio'; } else
-  //     if ( tirada < 70 ) { quien = 'un Mundo Perdido'; } else
-  //     if ( tirada < 74 ) { quien = 'unas joyas'; } else
-  //     if ( tirada < 78 ) { quien = 'un regente'; } else
-  //     if ( tirada < 82 ) { quien = 'a alguien famoso'; } else
-  //     if ( tirada < 86 ) { quien = 'a un rival'; } else
-  //     if ( tirada < 89 ) { quien = 'a la ley'; } else
-  //     if ( tirada < 94 ) { quien = 'a unas víctimas inocentes'; } else
-  //     if ( tirada < 98 ) { quien = 'a la familia de nuestro/s heroe/s'; } else
-  //     if ( tirada < 101 ) {
-  //       quien = `${ this.generarPlanAQuien(this.d100())} y ${ this.generarPlanAQuien(this.d100())}`; }
+   generarPlan() {
 
-  //   return quien;
-  // }
+    const VERBO_COSAS = [
+      'manipular',
+      'vender',
+      'adquirir',
+      'controlar',
+      'robar',
+      'crear',
+      'destruir',
+      'pasar de contrabando',
+      'tomar',
+      'destruir',
+    ];
+
+    const VERBO_ENTIDADES = [
+      'manipular',
+      'vender',
+      'adquirir',
+      'controlar',
+      'robar',
+      'crear',
+      'destruir',
+      'bombardear',
+      'tomar',
+      'destruir',
+    ];
+
+    const VERBO_PERSONAS = [
+      'manipular',
+      'vender',
+      'matar',
+      'controlar',
+      'crear',
+      'cazar',
+      'aterrorizar',
+      'secuestrar',
+      'chantajear',
+      'secuestrar',
+      'asesinar',
+      'atracar',
+      'atacar',
+      'regir',
+      'chantajear'
+    ];
+
+    const COSAS = [
+      'a un monstruo',
+      'un edificio',
+      'un tesoro',
+      'un objeto',
+      'un invento',
+      'un vehículo',
+      'un negocio',
+      'unas joyas',
+     ];
+
+     const ENTIDADES = [
+      'a un país',
+      'un tesoro',
+      'una ciudad',
+      'al mundo',
+      'un Mundo Perdido',
+     ];
+
+     const PERSONAS = [
+      'a un monstruo',
+      'a una gente',
+      'a un país',
+      'a un enemigo',
+      'a una mujer',
+      'a un hombre',
+      'a nuestro/s heroe/s',
+      'un regente',
+      'a alguien famoso',
+      'a un rival',
+      'a unas víctimas inocentes',
+      'a la familia de nuestro/s heroe/s',
+     ];
+
+    const PLANTILLA = [
+      ` planea ${ VERBO_COSAS[Math.floor(Math.random() * VERBO_COSAS.length)]} ${ COSAS[Math.floor(Math.random() * COSAS.length)]}`,
+      ` planea ${ VERBO_PERSONAS[Math.floor(Math.random() * VERBO_PERSONAS.length)]} ${ PERSONAS[Math.floor(Math.random() * PERSONAS.length)]}`,
+      ` planea ${ VERBO_COSAS[Math.floor(Math.random() * VERBO_COSAS.length)]} ${ COSAS[Math.floor(Math.random() * COSAS.length)]}`,
+      ` planea ${ VERBO_PERSONAS[Math.floor(Math.random() * VERBO_PERSONAS.length)]} ${ PERSONAS[Math.floor(Math.random() * PERSONAS.length)]}`,
+      ` planea ${ VERBO_ENTIDADES[Math.floor(Math.random() * VERBO_ENTIDADES.length)]} ${ ENTIDADES[Math.floor(Math.random() * ENTIDADES.length)]}`,
+    ];
+
+    return  PLANTILLA[Math.floor(Math.random() * PLANTILLA.length)];
+
+ }
+
 
   // generarGancho(tirada: number) {
   //   let gancho: string;
@@ -489,14 +591,16 @@ export class GeneradorAventurasService {
   // }
 }
 
-
+ export interface Genero {
+   nombre: string;
+   id: string;
+ }
 
 
 export interface Sinopsis {
   villanos: string;
   villanoPrincipal: string;
-  plan1: string;
-  plan2: string;
+  plan: string;
   localizacion: string;
 }
 
@@ -523,9 +627,10 @@ export interface Acto {
 export interface Aventura {
   intro: Sinopsis;
   actoPrimero: Acto;
-   actoSegundo: Acto;
-   actoTercero: Acto;
-   actoCuarto: Acto;
+  actoSegundo: Acto;
+  actoTercero: Acto;
+  actoCuarto: Acto;
   publicadaEn: string;
   numeroPublicacion: number;
+  genero: Genero;
 }

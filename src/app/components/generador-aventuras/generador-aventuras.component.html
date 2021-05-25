@@ -20,11 +20,12 @@
                     <div class="card-body">
                         <h3 class="card-title titulogenerado">{{ titulo }}</h3>
                         <p class="card-text"><small class="text-muted">Originalmente publicada en <strong>{{ aventura.publicadaEn }} #{{ aventura.numeroPublicacion }}</strong></small></p>
+                        <p class="card-text"><small class="text-muted">Género: <strong>{{ aventura.genero.nombre }} </strong></small></p>
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title titulogenerado">Sinopsis</h4>
-                                <p class="card-text titulogenerado"> {{ aventura.intro.villanos }} planea {{ aventura.intro.plan1 }} {{ aventura.intro.plan2 }} en {{ aventura.intro.localizacion }}</p>
-                                <p class="card-text titulogenerado"> Villano principal es {{ aventura.intro.villanoPrincipal }} </p>
+                                <p class="card-text titulogenerado"> {{ aventura.intro.villanoPrincipal }} {{ aventura.intro.plan }} {{ aventura.intro.localizacion }}</p>
+                                <p class="card-text titulogenerado"> Secuaces {{ aventura.intro.villanos }} </p>
                             </div>
 
                             <!-- <div class="card-body">
