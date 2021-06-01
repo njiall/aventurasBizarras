@@ -17,7 +17,9 @@ import { AplicacionesComponent } from './components/aplicaciones/aplicaciones.co
 import { GeneradorTitulosComponent } from './components/generador-titulos/generador-titulos.component';
 import { LanzaDadosComponent } from './components/lanza-dados/lanza-dados.component';
 import { GeneradorAventurasComponent } from './components/generador-aventuras/generador-aventuras.component';
-import { ContactoComponent } from './contacto/contacto.component';
+import { ContactoComponent } from './components/contacto/contacto.component';
+
+
 
 @NgModule({
   declarations: [
