@@ -13,11 +13,13 @@ export class InicioComponent implements OnInit {
      nombre: 'Generador aleatorio de títulos',
      descripcion: '¿Quieres generar el título de una historia estilo pulp pero no se te ocurre. ¡Prueba nuestro generador aleatorio!',
      enlace: '/generadorTitulos',
+     imagen: '../assets/images/libros.jpg'
    },
    {
      nombre: 'Generador de aventuras',
      descripcion: 'Generador de tramas. Genera de forma aleatoria el esqueleto de una aventura pulp ¡Añadirle la carne es cosa tuya!',
      enlace: '/generaAventuras',
+     imagen: '../assets/images/aventuras.jpg'
    }
  ];
 
@@ -36,4 +38,5 @@ export interface Aplicacion {
   nombre: string;
   descripcion: string;
   enlace: string;
+  imagen: string;
 }

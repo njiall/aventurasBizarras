@@ -1,4 +1,50 @@
-<div class="container-fluid">
+<div class="container">
+
+    <div class="jumbotron p-3 m-3 p-md-5 text-white rounded bg-dark">
+        <div class="row">
+            <div class="col-md-8 px-0">
+                <h1 class="display-6 font-italic">Aplicaciones Bizarras</h1>
+                <p class="lead my-3">Aquí encontrarás herramientas sencillas que te permitirán generar de forma aleatoria y un poco loca títulos de aventuras, personajes o incluso semillas de aventuras.</p>
+            </div>
+            <div class="col-md-4">
+                <img class="flex-auto card-img-top" src="assets/images/palabras.jpg" alt="Palabras">
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <div class="col-md-6">
+            <div class="card flex-md-row mb-4 box-shadow h-md-250">
+                <div class="card-body d-flex flex-column align-items-start">
+                    <img class="card-img-right flex-auto d-none d-md-block" src="assets/images/cabecera.png" alt="Card image cap">
+                    <p class="card-text mb-auto mt-1"> ¿Alguna vez has deseado explorar la jungla amazónica? ¿Los canales de Marte? ¿Una lucha a brazo partido contra simios psicópatas? ¿Balancearte en una lámpara de araña con tu fiel acero en la mano? ¡Bienvenido pues y que empiece la
+                        aventura!
+                    </p>
+                    <a href="http://www.aventurasbizarras.com" target="_blank" class="card-link">Visita Aventuras Bizarras</a>
+                </div>
+            </div>
+            <div class="card-body text-center colorPapel">
+                <h5 class="card-title">Comparte en Twitter</h5>
+                <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-size="large" data-text="¡Eh, un generador aleatorio de cositas pulp!" data-url="http://aplicaciones.aventurasbizarras.com" data-via="AventurasBizarr" data-hashtags="aplicacionesBizarras,Pulp"
+                    data-related="" data-lang="es" data-show-count="true" target="_blank">Tweet</a>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card flex-md-row mb-4 box-shadow h-md-250" *ngFor="let aplicacion of listaAplicaciones; let i = index">
+                <div class="card-body d-flex flex-column align-items-start">
+                    <strong class="d-inline-block mb-2 text-primary">Aplicaciones</strong>
+                    <h3 class="mb-0"> {{ aplicacion.nombre }}</h3>
+                    <p class="card-text mb-2">{{ aplicacion.descripcion }}</p>
+                    <a routerLink="{{ aplicacion.enlace }}">Abrir aplicación</a>
+                </div>
+                <img class="card-img-right flex-auto d-none d-md-block card-img-top" [src]="aplicacion.imagen" [alt]="aplicacion.nombre">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- <div class="container-fluid">
     <div class="jumbotron jumbotron-fluid contenedor">
         <div class="contenedor colorPapel">
             <h1 class="display-4">Aplicaciones Bizarras</h1>
@@ -42,4 +88,4 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
